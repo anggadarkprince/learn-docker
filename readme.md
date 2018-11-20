@@ -20,21 +20,20 @@ Docker is a platform for developers and sysadmins to develop, deploy, and run ap
 `docker container ls --all`
 
 --------------------------------------------------------------------------------
-# Dockerfile is a docker configuration that define the image and commands
-# find image repository in https://hub.docker.com 
-# create file by https://docs.docker.com/get-started/part2/#dockerfile
-# DOCKER COMMANDS
+Dockerfile is a docker configuration that define the image and commands find image repository in https://hub.docker.com, create file by https://docs.docker.com/get-started/part2/#dockerfile
 
-### build the image (or download it first)
+## DOCKER COMMANDS
+
+### Build the image (or download it first)
 `docker build -t [YOUR_REPO_NAME] .`
 
-### run docker image and enter the repository
+### Run docker image and enter the repository
 `docker run -it [YOUR_REPO_NAME]`
 
-### run docker container in background
+### Run docker container in background
 `docker run -it -d [YOUR_REPO_NAME]`
 
-### show docker proccess
+### Show docker proccess
 `docker ps`
 
 ### Enter docker container 
@@ -66,7 +65,7 @@ Docker is a platform for developers and sysadmins to develop, deploy, and run ap
 `docker-compose up --build`
 
 --------------------------------------------------------------------------------
-### DOCKER ONLINE REPOSITORY
+## DOCKER ONLINE REPOSITORY
 
 ### Log in this CLI session using your Docker credentials
 `docker login`

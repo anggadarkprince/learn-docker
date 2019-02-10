@@ -1,0 +1,17 @@
+version: '2'
+
+# based off compose-sample-2, only we build nginx.conf into image
+# uses sample site from https://startbootstrap.com/template-overviews/agency/
+
+services:
+  proxy:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    # image: nginx-custom # find this custom name on cache, if it does not exist, build one (if blank auto name with directory name)
+    ports:
+      - '8080:80'
+  web:
+    image: httpd
+    volumes:
+      - ./html:/usr/local/apache2/htdocs/

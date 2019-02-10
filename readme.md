@@ -9,7 +9,7 @@ Docker is a platform for developers and sysadmins to develop, deploy, and run ap
 `docker info`
 
 ### Test docker installation by run hello-world test image
-`docker run hello-world`
+`docker run hello-world` / `docker container run hello-world`
 
 ### Show all downloaded and installed docker image (list, remove)
 `docker image ls`
@@ -19,38 +19,40 @@ Docker is a platform for developers and sysadmins to develop, deploy, and run ap
 `docker container ls`
 `docker container ls --all`
 
+## remove docker container, remove stopped container
+`docker container rm [CONTAINER]`
+`docker container prune`
+
 --------------------------------------------------------------------------------
-Dockerfile is a docker configuration that define the image and commands find image repository in https://hub.docker.com, create file by https://docs.docker.com/get-started/part2/#dockerfile
+Dockerfile is a docker configuration that define the image and commands find image repository in https://hub.docker.com, 
+create file by https://docs.docker.com/get-started/part2/#dockerfile
 
 ## DOCKER COMMANDS
 
 ### Build the image (or download it first)
-`docker build -t [YOUR_REPO_NAME] .`
+`docker image build -t [YOUR_REPO_NAME] .`
 
 ### Run docker image and enter the repository
-`docker run -it [YOUR_REPO_NAME]`
+`docker container run -it [YOUR_REPO_NAME]`
 
-### Run docker container in background
-`docker run -it -d [YOUR_REPO_NAME]`
+### Run docker container in background (detach) and remove the container when stopped
+`docker container run -it -d --rm [YOUR_REPO_NAME]`
 
-### Show docker proccess
-`docker ps`
+### Enter docker container and run the app
+`docker exec -it [CONTAINER_ID] bash`
 
-### Enter docker container 
-`sudo docker exec -it [CONTAINER_ID] bash`
-
-### Run docker container with port forwarding port
-`docker run -it -p [PORT_HOST]:[PORT_CONTAINER] [CONTAINER_NAME]`
+### Run docker container with port forwarding port (publish/port)
+`docker run -it -p [PORT_HOST]:[PORT_CONTAINER] -n [CUSTOM_NAME] [CONTAINER_NAME]`
 
 ### Run docker and mount volume host to container so the code can be updated real time
-`sudo docker run -it -p [PORT_HOST]:[PORT_CONTAINER] -v [PATH_HOST]:[PATH_CONTAINER] [CONTAINER_NAME]`
+`docker container run -it -p [PORT_HOST]:[PORT_CONTAINER] -v [PATH_HOST]:[PATH_CONTAINER] [CONTAINER_NAME]`
+`docker container run -d --name simple-nginx -p 8080:80 -v $(pwd):/usr/share/nginx/html nginx`
 
 ### Stop docker container
 `docker stop [CONTAINER_ID]`
 
-### Stop the docker container
-`docker stop [CONTAINER_ID]`
-
+--------------------------------------------------------------------------------
+## DOCKER COMPOSE
 
 ### Docker compose combine services
 `docker-compose --version`
@@ -58,8 +60,11 @@ Dockerfile is a docker configuration that define the image and commands find ima
 ### Run docker compose container
 `docker-compose up`
 
-### Remove docker compose container
+### Remove docker compose container, but leave built image untouched
 `docker-compose down` 
+
+## Remove docker built images as well
+`docker-compose down --rmi local`
 
 ### Build before run docker composer service
 `docker-compose up --build`
@@ -81,4 +86,5 @@ Dockerfile is a docker configuration that define the image and commands find ima
 
 ---------------------------------------------------------------------------------
 ### Remove dangling image
+`docker image prune`
 `docker rmi $(docker images -f "dangling=true" -q)`

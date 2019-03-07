@@ -29,17 +29,28 @@ create file by https://docs.docker.com/get-started/part2/#dockerfile
 
 ## DOCKER COMMANDS
 
+### Download the image to cache
+`docker image pull [YOUR_REPO_NAME]`
+
 ### Build the image (or download it first)
 `docker image build -t [YOUR_REPO_NAME] .`
 `docker image build --tag=friendlyhello:v1.2 .`
 
-### Run docker image and enter the repository
+### Capture container to image
+`docker commit -c 'CMD ["redis-server"]' [CONTAINER ID]`
+
+### Create and start the container (request logs to our terminal)
+`docker container create [YOUR_REPO_NAME]`
+`docker container start -a [YOUR_REPO_NAME]`
+
+### Run docker image and enter the repository and override command
 `docker container run -it [YOUR_REPO_NAME]`
+`docker container run [YOUR_REPO_NAME] [COMMAND]`
 
 ### Run docker container in background (detach) and remove the container when stopped
 `docker container run -it -d --rm [YOUR_REPO_NAME]`
 
-### Enter docker container and run the app
+### Enter docker container and run the app (command)
 `docker exec -it [CONTAINER_ID] bash`
 
 ### Run docker container with port forwarding port (publish/port)
@@ -49,8 +60,14 @@ create file by https://docs.docker.com/get-started/part2/#dockerfile
 `docker container run -it -p [PORT_HOST]:[PORT_CONTAINER] -v [PATH_HOST]:[PATH_CONTAINER] [CONTAINER_NAME]`
 `docker container run -d --name simple-nginx -p 8080:80 -v $(pwd):/usr/share/nginx/html nginx`
 
+### Run docker and bookmark path inside container (don't override by mounted volume outside the container)
+`docker container run -v app/node_modules -v $(pwd):/usr/app`
+
 ### Stop docker container
 `docker stop [CONTAINER_ID]`
+
+### Get logs from container
+`docker logs [CONTAINER_ID]`
 
 --------------------------------------------------------------------------------
 ## DOCKER COMPOSE

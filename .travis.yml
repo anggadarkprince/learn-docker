@@ -2,9 +2,8 @@ sudo: required
 services:
   - docker
 
-before_script: cd compose-react
-
 before_install:
+  - cd compose-react
   - docker build -t anggadarkprince/docker-react -f Dockerfile.dev .
 
 script:

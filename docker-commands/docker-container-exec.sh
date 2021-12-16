@@ -1,0 +1,1 @@
+docker container exec -i -t redis1 /bin/bash

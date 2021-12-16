@@ -3,24 +3,43 @@ https://docs.docker.com/install/linux/docker-ce/ubuntu
 Docker is a platform for developers and sysadmins to develop, deploy, and run applications with containers.
 
 ### Show docker client version
-`docker --version`
+`docker --version`\
+`docker version`
 
 ### Show client and server docker version
 `docker info`
 
-### Test docker installation by run hello-world test image
+### Test docker by running hello-world test image
 `docker run hello-world` / `docker container run hello-world`
 
-### Show all downloaded and installed docker image (list, remove)
+## Images
+### Show all downloaded and installed docker image
 `docker image ls`
+
+### Pull / download image
+`docker image pull [IMAGE]`
+
+### Remove images
 `docker image rm [IMAGE]`
 
-### Show all docker container wether running or not and show its proccess (running, all, all in quiet mode)
-`docker container ls`
+## Containers
+### Show all docker container whether running or not and show its process (running, all, all in quiet mode)
+`docker container ls`\
 `docker container ls --all`
 
-## remove docker container, remove stopped container
-`docker container rm [CONTAINER]`
+### Create Container
+`docker container create --name [NAME] [IMAGE:TAG]`
+
+### Start Container
+`docker container start [NAME/ID]`
+
+### Stop Container
+`docker container stop [NAME/ID]`
+
+### Remove docker container
+`docker container rm [NAME/ID]`
+
+### Remove stopped container
 `docker container prune`
 
 --------------------------------------------------------------------------------
@@ -33,18 +52,18 @@ create file by https://docs.docker.com/get-started/part2/#dockerfile
 `docker image pull [YOUR_REPO_NAME]`
 
 ### Build the image (or download it first)
-`docker image build -t [YOUR_REPO_NAME] .`
+`docker image build -t [YOUR_REPO_NAME] .`\
 `docker image build --tag=friendlyhello:v1.2 .`
 
 ### Capture container to image
 `docker commit -c 'CMD ["redis-server"]' [CONTAINER ID]`
 
 ### Create and start the container (request logs to our terminal)
-`docker container create [YOUR_REPO_NAME]`
+`docker container create [YOUR_REPO_NAME]`\
 `docker container start -a [YOUR_REPO_NAME]`
 
 ### Run docker image and enter the repository and override command
-`docker container run -it [YOUR_REPO_NAME]`
+`docker container run -it [YOUR_REPO_NAME]`\
 `docker container run [YOUR_REPO_NAME] [COMMAND]`
 
 ### Run docker container in background (detach) and remove the container when stopped
@@ -57,7 +76,7 @@ create file by https://docs.docker.com/get-started/part2/#dockerfile
 `docker run -it -p [PORT_HOST]:[PORT_CONTAINER] -n [CUSTOM_NAME] [CONTAINER_NAME]`
 
 ### Run docker and mount volume host to container so the code can be updated real time
-`docker container run -it -p [PORT_HOST]:[PORT_CONTAINER] -v [PATH_HOST]:[PATH_CONTAINER] [CONTAINER_NAME]`
+`docker container run -it -p [PORT_HOST]:[PORT_CONTAINER] -v [PATH_HOST]:[PATH_CONTAINER] [CONTAINER_NAME]`\
 `docker container run -d --name simple-nginx -p 8080:80 -v $(pwd):/usr/share/nginx/html nginx`
 
 ### Run docker and bookmark path inside container (don't override by mounted volume outside the container)
@@ -156,7 +175,7 @@ create file by https://docs.docker.com/get-started/part2/#dockerfile
 ### show environment variables and command for myvm1
 `docker-machine env myvm1`
 
-### Mac command to connect shell to myvm1
+### Mac commands to connect shell to myvm1
 `eval $(docker-machine env myvm1)`
 
 ### Deploy an app; command shell must be set to talk to manager (myvm1), uses local Compose file
@@ -165,7 +184,7 @@ create file by https://docs.docker.com/get-started/part2/#dockerfile
 ### Copy file to node's home dir (only required if you use ssh to connect to manager and deploy the app)
 `docker-machine scp docker-compose.yml myvm1:~`
 
-### Deploy an app using ssh (you must have first copied the Compose file to myvm1)
+### Deploy an app using ssh (you must have first copied Compose the file to myvm1)
 `docker-machine ssh myvm1 "docker stack deploy -c <file> <app>"`
 
 ### Disconnect shell from VMs, use native docker
@@ -184,7 +203,7 @@ create file by https://docs.docker.com/get-started/part2/#dockerfile
 ### Log in this CLI session using your Docker credentials
 `docker login`
 
-### Tag <image> for upload to registry
+### Tag <image> for the upload to registry
 `docker tag <image> username/repository:tag` 
 
 ### Upload tagged image to registry

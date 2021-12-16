@@ -1,2 +1,3 @@
 compose-node-redis/.gitignore
 compose-node-redis/package.json
+.idea

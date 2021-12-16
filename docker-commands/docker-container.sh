@@ -14,3 +14,5 @@ docker container stop redis2
 
 docker container rm redis1
 docker container rm redis2
+
+docker container inspect redis:latest
